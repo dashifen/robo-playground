@@ -1,0 +1,31 @@
+{
+  "name": "georgetown-university/robo-test",
+  "description": "A \"Hello, World\" Robo application.",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "version": "0.0.1",
+  "authors": [
+    {
+      "name": "Georgetown Unviersity Webservices",
+      "email": "webservices@georgetown.edu"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "GUWP\\": "src"
+    }
+  },
+  "require": {
+    "consolidation/annotated-command": "^4.2",
+    "consolidation/robo": "^3.0"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "scripts": {
+    "build": "php build.php",
+    "copy": "sudo cp guwp.phar /usr/local/bin/guwp2 && sudo chmod +x /usr/local/bin/guwp2",
+    "delete": "sudo rm /usr/local/bin/guwp2"
+  }
+}
