@@ -7,9 +7,6 @@
 namespace GUWP;
 
 use Phar;
-use Robo\Runner;
-use GUWP\Commands\HelloWorld;
-use Symfony\Component\Console\Output\ConsoleOutput;
 
 // when we're running as a part of a compiled phar, the autoloader is located
 // within that phar.  but, during testing, it's most likely that we won't be
@@ -21,15 +18,11 @@ if (!is_file($autoloader = $autoloaderDir . '/vendor/autoload.php')) {
   die('Autoloader not found.  Run \'composer install\'.');
 }
 
+// requiring our autoloader returns an instance of composer's ClassLoader
+// object after also loading it into memory.  that's how we can both find our
+// GUWP object as well as pass the ClassLoader to it.  running our application
+// produces a status code which we then echo using the exit command.
+
 $autoloader = require $autoloader;
-
-$output = new ConsoleOutput();
-$appName = 'GU WordPress Commander';
-$appVersion = json_decode(file_get_contents('composer.json'))->version;
-$statusCode = (new Runner([HelloWorld::class]))
-  ->setClassLoader($autoloader)
-  ->execute($argv, $appName, $appVersion, $output);
-
-exit($statusCode);
-
-
+$status = (new GUWP($autoloader))->run();
+exit($status);
