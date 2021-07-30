@@ -1,14 +1,15 @@
-author: David Dahsifen Kees
+author: 'David Dashifen Kees'
 branding:
-  icon: check
-  color: blue
-description: Running Psalm via Github action
-name: Psalm - Static Analysis for PHP
-on: [push, pull_request]
-with:
+  icon: 'check'
+  color: 'blue'
+description: 'Running Psalm via Github action'
+name: 'Psalm - Static Analysis for PHP'
+inputs:
   security_analysis: true
-  report_file: results.sarif
+  report_file: 'results.sarif'
   composer_require_dev: true
   composer_ignore_platform_reqs: true
-
+runs:
+  using: 'docker'
+  image: 'docker://vimeo/psalm-github-actions'
 
