@@ -1,0 +1,14 @@
+author: David Dahsifen Kees
+branding:
+  icon: check
+  color: blue
+description: Running Psalm via Github action
+name: Psalm - Static Analysis for PHP
+on: [push, pull_request]
+with:
+  security_analysis: true
+  report_file: results.sarif
+  composer_require_dev: true
+  composer_ignore_platform_reqs: true
+
+
